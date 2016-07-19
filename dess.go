@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/bjwschaap/docker-events-splunk-forwarder/dess"
+	"github.com/bjwschaap/docker-events-syslog/dess"
 	"github.com/urfave/cli"
 )
 
