@@ -1,4 +1,4 @@
-# docker-events-splunk-forwarder
+# Docker Events Syslog Streamer (dess)
 Experimental daemon that forwards Docker events to the Syslog.
 
 By default Docker events are not logged. In order to capture these events and
