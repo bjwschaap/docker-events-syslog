@@ -41,24 +41,6 @@ func main() {
 			Usage:  "Should TLS be used for connecting to Docker",
 			EnvVar: "DOCKER_TLS_VERIFY",
 		},
-		cli.StringFlag{
-			Name:   "splunk,s",
-			Value:  "",
-			Usage:  "Address of Splunk",
-			EnvVar: "SPLUNK_ADDRESS",
-		},
-		cli.StringFlag{
-			Name:   "user,u",
-			Value:  "",
-			Usage:  "Username of the Splunk credentials",
-			EnvVar: "SPLUNK_USER",
-		},
-		cli.StringFlag{
-			Name:   "password,p",
-			Value:  "",
-			Usage:  "Password of the Splunk credentials",
-			EnvVar: "SPLUNK_PASSWORD",
-		},
 	}
 
 	// Set the main program logic
