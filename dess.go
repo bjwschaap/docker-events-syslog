@@ -18,7 +18,7 @@ func main() {
 	app.Copyright = "(C)2016 Bastiaan Schaap"
 	app.Author = "Bastiaan Schaap"
 	app.Email = "bastiaan.schaap@gmail.com"
-	app.UsageText = `./dess -s 123.123.1.2:4873 -u user -p pass
+	app.UsageText = `./dess
 	 This daemon uses DOCKER_HOST, DOCKER_CERT_PATH and DOCKER_TLS settings to connect to the Docker daemon.
    Optionally you can override Docker settings with --host, --certs and --tls.`
 
