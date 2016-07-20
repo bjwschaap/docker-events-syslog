@@ -17,6 +17,7 @@ func Start(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
 	for msg := range events {
 		msgJSON, err := json.Marshal(msg)
 		if err != nil {
