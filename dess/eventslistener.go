@@ -17,18 +17,16 @@ func Start(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	for {
-		select {
-		case msg := <-events:
-			msgJSON, err := json.Marshal(msg)
-			if err != nil {
-				return err
-			}
-			msgJSONString := string(msgJSON)
-			log.Printf("Received event: %v", msgJSONString)
-			logSyslog(msgJSONString)
+	for msg := range events {
+		msgJSON, err := json.Marshal(msg)
+		if err != nil {
+			return err
 		}
+		msgJSONString := string(msgJSON)
+		log.Printf("Received event: %v", msgJSONString)
+		logSyslog(msgJSONString)
 	}
+	return nil
 }
 
 // events sregisters and starts an Event listener, and returns a channel
