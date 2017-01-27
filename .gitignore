@@ -8,6 +8,7 @@ docker-events-syslog
 _obj
 _test
 vendor
+release
 
 # Architecture specific extensions/prefixes
 *.[568vq]
