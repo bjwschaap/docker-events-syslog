@@ -15,7 +15,7 @@ GO_LINT=golint
 TOP_PACKAGE_DIR := github.com/bjwschaap
 PACKAGE_LIST := docker-events-syslog
 
-.PHONY: all build build-race test test-verbose deps update-deps install clean fmt vet lint
+.PHONY: all build build-race test test-verbose deps update-deps install clean fmt vet lint release
 
 all: build
 
@@ -23,6 +23,15 @@ build:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Build $$p ..."; \
 		$(GO_BUILD) $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+	done
+
+release:
+	mkdir -p release
+	@for p in $(PACKAGE_LIST); do \
+		echo "==> Making release for $$p ..."; \
+		GOOS=linux GOARCH=amd64 go build -o release/dess-linux-amd64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=386 go build -o release/dess-linux-386 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=arm go build -o release/dess-linux-arm $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
 build-race: vet
@@ -82,17 +91,6 @@ lint:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Lint $$p ..."; \
 		$(GO_LINT) src/$(TOP_PACKAGE_DIR)/$$p; \
-	done
-
-.PHONY: release
-
-release:
-	mkdir -p release
-	@for p in $(PACKAGE_LIST); do \
-		echo "==> Making release for $$p ..."; \
-		GOOS=linux GOARCH=amd64 go build -o release/dess-linux-amd64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
-		GOOS=linux GOARCH=386 go build -o release/dess-linux-386 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
-		GOOS=linux GOARCH=arm go build -o release/dess-linux-arm $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
 # vim: set noexpandtab shiftwidth=8 softtabstop=0:
