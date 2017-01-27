@@ -1,3 +1,6 @@
+VERSION=$(shell git describe --tags)
+BUILD=$(shell date +%FT%T%z)
+
 GO_CMD=go
 GO_BUILD=$(GO_CMD) build -v
 GO_BUILD_RACE=$(GO_CMD) build -race
@@ -15,6 +18,8 @@ GO_LINT=golint
 TOP_PACKAGE_DIR := github.com/bjwschaap
 PACKAGE_LIST := docker-events-syslog
 
+LDFLAGS=-ldflags "-w -s -X main.Version=${VERSION} -X main.Build=${BUILD}"
+
 .PHONY: all build build-race test test-verbose deps update-deps install clean fmt vet lint release
 
 all: build
@@ -22,18 +27,19 @@ all: build
 build:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Build $$p ..."; \
-		$(GO_BUILD) $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		$(GO_BUILD) ${LDFLAGS} $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
 release:
-	mkdir -p release
+	@mkdir -p release
+	@echo "==> Version: ${VERSION} Build: ${BUILD}"
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Making linux AMD64 release for $$p ..."; \
-		GOOS=linux GOARCH=amd64 go build -o release/dess-linux-amd64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -o release/dess-linux-amd64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 		echo "==> Making linux 386 release for $$p ..."; \
-		GOOS=linux GOARCH=386 go build -o release/dess-linux-386 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=386 go build ${LDFLAGS} -o release/dess-linux-386 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 		echo "==> Making linux ARM release for $$p ..."; \
-		GOOS=linux GOARCH=arm go build -o release/dess-linux-arm $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=arm go build ${LDFLAGS} -o release/dess-linux-arm $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
 build-race: vet
@@ -73,6 +79,7 @@ install:
 	done
 
 clean:
+	@rm -rf release
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Clean $$p ..."; \
 		$(GO_CLEAN) $(TOP_PACKAGE_DIR)/$$p; \
