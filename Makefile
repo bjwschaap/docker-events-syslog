@@ -17,7 +17,7 @@ PACKAGE_LIST := docker-events-syslog
 
 .PHONY: all build build-race test test-verbose deps update-deps install clean fmt vet lint release
 
-all: release
+all: build
 
 build:
 	@for p in $(PACKAGE_LIST); do \
@@ -25,7 +25,7 @@ build:
 		$(GO_BUILD) $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
-release: deps
+release:
 	mkdir -p release
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Making linux AMD64 release for $$p ..."; \

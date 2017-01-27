@@ -3,7 +3,9 @@ go:
   - 1.7
 install:
   - go get -v github.com/Masterminds/glide
-  - glide install
+  - make deps
+before_deploy:
+  - make release
 deploy:
   provider: releases
   api_key:
@@ -12,6 +14,7 @@ deploy:
   - release/dess-linux-amd64
   - release/dess-linux-386
   - release/dess-linux-arm
+  skip_cleanup: true
   on:
     repo: bjwschaap/docker-events-syslog
     tags: true
