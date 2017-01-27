@@ -35,11 +35,13 @@ release:
 	@echo "==> Version: ${VERSION} Build: ${BUILD}"
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Making linux AMD64 release for $$p ..."; \
-		GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -o release/dess-linux-amd64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -o release/dess-linux-x64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 		echo "==> Making linux 386 release for $$p ..."; \
 		GOOS=linux GOARCH=386 go build ${LDFLAGS} -o release/dess-linux-386 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 		echo "==> Making linux ARM release for $$p ..."; \
 		GOOS=linux GOARCH=arm go build ${LDFLAGS} -o release/dess-linux-arm $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		echo "==> Making OSX x64 release for $$p ..."; \
+		GOOS=darwin GOARCH=amd64 go build ${LDFLAGS} -o release/dess-osx-x64 $(TOP_PACKAGE_DIR)/$$p || exit 1; \
 	done
 
 build-race: vet
