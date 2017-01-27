@@ -1,0 +1,5 @@
+package: github.com/bjwschaap/docker-events-syslog
+import:
+- package: github.com/fsouza/go-dockerclient
+- package: github.com/urfave/cli
+  version: ^1.19.1
