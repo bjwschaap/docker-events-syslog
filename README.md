@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/bjwschaap/docker-events-syslog.svg?branch=master)
+
 # Docker Events Syslog Streamer (dess)
 Experimental daemon that forwards Docker events to the Syslog.
 
