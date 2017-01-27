@@ -1,6 +1,9 @@
 language: go
 go:
-- 1.7
+  - 1.7
+install:
+  - go get -v github.com/Masterminds/glide
+  - glide install
 deploy:
   provider: releases
   api_key:
