@@ -11,9 +11,10 @@ deploy:
   api_key:
     secure: D3IMTFXBbNgTlCirXJxwwkN+6nUmhZHfidw8j7qm8LrEA6Q5aP4XVCuy8rm1F6gqIii9tnv3cj9Sv2wTPtN9g3WTqX14sLU90T5X4ypVrjMqUP8SJcZ3zczLLXk1cGA4UukXhmaX5HJq92dgmmokSH7AKb8T7CAr4pjpyeykkNfqYTJbpxdZLKSau4zO0OG+5/v0XapqL9V6oP/+kkH6U977Qn6WOLhfqb1AXHvPVaanNPejRoOmT0ol5gtQyKRAGspVBiPxch9i0qQJJ3UA55YnxTax1PEOxR6Yt83ugbGqfJzZLGFpRVUMTKtAMziokIrD4CoORnxZlAvspCXvHk4T+QQUACl6JDWM5/n01a/e5NaKZVXo49XeMvrCbbyNnPgRnnsLJ0u7qlHDnm8O+0WQXDvCm8NTMTTvr8/97/bvzjdLNfoMsyKZF8nd/SADd3wnXESaJqF4Jm+ItZFLbXIJFYpEz3hr2xSSyOjcgGoy5fVzd3UVPE9+KCH7Xt8zTrt4LR1uFWPhGnVx7oJSXyOU/z1/7y/xXA3X9UxL21qykdV2vaY5fbE60oMkGIiXVBrrx8xhmh7ZYemAtSsToxddOALeba49zihtkijbwwfwc20GZvHuMTYcqttrA64NB3iVlTB1yZVOIo1vGbMKXoy9yHTScy8x1sa3YDueQcE=
   file:
-  - release/dess-linux-amd64
+  - release/dess-linux-x64
   - release/dess-linux-386
   - release/dess-linux-arm
+  - release/dess-osx-x64
   skip_cleanup: true
   on:
     repo: bjwschaap/docker-events-syslog
