@@ -101,7 +101,7 @@ vet:
 lint:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Lint $$p ..."; \
-		$(GO_LINT) src/$(TOP_PACKAGE_DIR)/$$p; \
+		$(GO_LINT) $(TOP_PACKAGE_DIR)/$$p; \
 	done
 
 # vim: set noexpandtab shiftwidth=8 softtabstop=0:
