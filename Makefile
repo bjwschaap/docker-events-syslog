@@ -65,13 +65,13 @@ test-verbose: deps
 deps:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Install dependencies for $$p ..."; \
-		$(GO_DEPS) $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		$(GO_DEPS) || exit 1; \
 	done
 
 update-deps:
 	@for p in $(PACKAGE_LIST); do \
 		echo "==> Update dependencies for $$p ..."; \
-		$(GO_DEPS_UPDATE) $(TOP_PACKAGE_DIR)/$$p || exit 1; \
+		$(GO_DEPS_UPDATE) || exit 1; \
 	done
 
 install:
