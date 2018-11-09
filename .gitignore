@@ -25,3 +25,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# IDEs
+.idea
+.vscode
